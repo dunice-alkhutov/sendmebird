@@ -16,7 +16,7 @@ import {
 } from 'react-native'
 
 import {PULLDOWN_DISTANCE} from '../config/config';
-import TopBar from './components/header';
+import Header from './components/header';
 import moment from 'moment';
 import Button from 'react-native-button';
 
@@ -55,10 +55,7 @@ export default class Chat extends Component {
     this._onBackPress = this._onBackPress.bind(this);
     this._onSend = this._onSend.bind(this);
     this._onPhoto = this._onPhoto.bind(this);
-    this._onChangeText = this._onChangeText.bind(this);
-    this._onPressParticipants = this._onPressParticipants.bind(this);
-    this._onPressBlockList = this._onPressBlockList.bind(this);
-    this._onPressExitChannel = this._onPressExitChannel.bind(this);
+    // this._onPressExitChannel = this._onPressExitChannel.bind(this);
   }
 
   componentWillUnmount() {
@@ -251,9 +248,6 @@ export default class Chat extends Component {
         'Open Channel',
         null,
         [
-          {text: 'Participant list', onPress: () => {this._onPressParticipants();}},
-          {text: 'Blocked user list', onPress: () => {this._onPressBlockList();}},
-          {text: 'Exit this channel', onPress: () => {this._onPressExitChannel();}},
           {text: 'Close'}
         ]
       )
@@ -322,7 +316,6 @@ export default class Chat extends Component {
           onOpenMenu={this._onOpenMenu.bind(this)}
           title={this.state.channel.name}
         />
-        <Text>asd</Text>
         <View style={[styles.chatContainer, {transform: [{ scaleY: -1 }]}]}>
           <ListView
             enableEmptySections={true}
@@ -388,7 +381,6 @@ export default class Chat extends Component {
             style={styles.textInput}
             placeholder={'Please type mesasge...'}
             ref='textInput'
-            onChangeText={this._onChangeText}
             value={this.state.text}
             autoFocus={false}
             blurOnSubmit={false}
