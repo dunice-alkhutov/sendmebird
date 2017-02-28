@@ -15,7 +15,6 @@ import {
   ListView
 } from 'react-native'
 
-import CacheableImage from 'react-native-cacheable-image'
 import {PULLDOWN_DISTANCE} from '../config/config';
 import TopBar from './components/header';
 import moment from 'moment';
@@ -342,7 +341,7 @@ export default class Chat extends Component {
                     <TouchableHighlight underlayColor='#f7f8fc' onPress={() => this._onUserPress(rowData.sender)}>
                       <View style={[styles.listItem, {transform: [{ scaleY: -1 }]}]}>
                         <View style={styles.listIcon}>
-                          <CacheableImage style={styles.senderIcon} key={rowData.sender.profileUrl} source={{uri: rowData.sender.profileUrl.replace('http://', 'https://')}} />
+                          <Image style={styles.senderIcon}  source={{uri: rowData.sender.profileUrl.replace('http://', 'https://')}} />
                         </View>
                         <View style={styles.senderContainer}>
                           <Text style={[styles.senderText, {color: '#3e3e55'}]}>{rowData.sender.nickname}</Text>
@@ -356,11 +355,11 @@ export default class Chat extends Component {
                     <TouchableHighlight underlayColor='#f7f8fc' onPress={() => this._onUserPress(rowData.sender)}>
                       <View style={[styles.listItem, {transform: [{ scaleY: -1 }]}]}>
                         <View style={styles.listIcon}>
-                          <CacheableImage style={styles.senderIcon} key={rowData.sender.profileUrl} source={{uri: rowData.sender.profileUrl.replace('http://', 'https://')}} />
+                          <Image style={styles.senderIcon}  source={{uri: rowData.sender.profileUrl.replace('http://', 'https://')}} />
                         </View>
                         <View style={styles.senderContainer}>
                           <Text style={[styles.senderText, {color: '#3e3e55'}]}>{rowData.sender.nickname}</Text>
-                          <CacheableImage style={{width: 100, height: 70}} key={rowData.url} source={{uri: rowData.url.replace('http://', 'https://')}} />
+                          <Image style={{width: 100, height: 70}}  source={{uri: rowData.url.replace('http://', 'https://')}} />
                         </View>
                       </View>
                     </TouchableHighlight>

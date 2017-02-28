@@ -122,6 +122,30 @@ export default class Login extends Component {
         }
     }
 
+    _renderButtons(){
+        if(!this.state.buttonDisabled){
+            return(
+                <View>
+                    <TouchableHighlight
+                        underlayColor='transparent'
+                        style={{top: 14}}
+                        onPress={this._onPressOpenChannel}>
+                        <Text style={this._buttonStyle()}>Open Channel</Text>
+                    </TouchableHighlight>
+
+                    <TouchableHighlight
+                        underlayColor='transparent'
+                        style={{top: 16}}
+                        onPress={this._onPressGroupChannel}>
+                        <Text style={this._buttonStyle()}>Group Channel</Text>
+                    </TouchableHighlight>
+                </View>
+            );
+        } else {
+            return null
+        }
+    }
+
     render() {
         return (
             <LoginView behavior='padding' style={styles.container} >
@@ -156,19 +180,7 @@ export default class Login extends Component {
 
                     <Text style={styles.errorLabel}>{this.state.errorMessage}</Text>
 
-                    <TouchableHighlight
-                        underlayColor='transparent'
-                        style={{top: 14}}
-                        onPress={this._onPressOpenChannel}>
-                        <Text style={this._buttonStyle()}>Open Channel</Text>
-                    </TouchableHighlight>
-
-                    <TouchableHighlight
-                        underlayColor='transparent'
-                        style={{top: 16}}
-                        onPress={this._onPressGroupChannel}>
-                        <Text style={this._buttonStyle()}>Group Channel</Text>
-                    </TouchableHighlight>
+                    {this._renderButtons()}
 
                    
                     
