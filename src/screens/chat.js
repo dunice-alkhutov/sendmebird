@@ -28,7 +28,8 @@ const ChatView = Platform.select({
 
 import SendBird from 'sendbird';
 var sb = null;
-var ImagePicker = require('react-native-image-picker');
+// const ImagePicker = require('react-native-image-picker');
+import ImagePicker from 'react-native-image-picker';
 var ipOptions = {
   title: 'Select Image File To Send',  
   mediaType: 'photo',
@@ -55,7 +56,7 @@ export default class Chat extends Component {
     this._onBackPress = this._onBackPress.bind(this);
     this._onSend = this._onSend.bind(this);
     this._onPhoto = this._onPhoto.bind(this);
-    // this._onPressExitChannel = this._onPressExitChannel.bind(this);
+    this._onChangeText = this._onChangeText.bind(this);
   }
 
   componentWillUnmount() {
@@ -151,7 +152,15 @@ export default class Chat extends Component {
     });
   }
 
+  _onChangeText(text) {
+    this.setState({
+      text: text,
+      disabled: (text.trim().length > 0) ? false : true
+    })
+  }
+
   _onPhoto() {
+    return
     var _self = this;
 
     if (Platform.OS === 'android'){
@@ -289,25 +298,6 @@ export default class Chat extends Component {
     }
   }
 
-  _onUserPress(obj) {
-    Alert.alert(
-      'Block User',
-      null,
-      [
-        {text: 'Block', onPress: () => {
-          sb.blockUser(obj, function(response, error) {
-            if(error) {
-              console.log(error);
-              return;
-            }
-          })
-        }},
-        {text: 'Cancel'}
-      ]
-    )
-  }
-
-
   render() {
     return (      
         <ChatView behavior="padding" style={styles.container}>
@@ -381,6 +371,7 @@ export default class Chat extends Component {
             style={styles.textInput}
             placeholder={'Please type mesasge...'}
             ref='textInput'
+            onChangeText={this._onChangeText}
             value={this.state.text}
             autoFocus={false}
             blurOnSubmit={false}
