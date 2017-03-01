@@ -19,12 +19,16 @@ import SendBird from 'sendbird'
 import Login from './src/screens/login'
 import OpenChannel from './src/screens/openChannel';
 import CreateChannel from './src/screens/createChannel';
+import GroupChannel from './src/screens/groupChannel';
 import Chat from './src/screens/chat';
+import Invite from './src/screens/invite';
 var SCREENS = {
   login: Login,
   openChannel: OpenChannel,
   createChannel: CreateChannel,
+  groupChannel: GroupChannel,
   chat: Chat,
+  inviteUser: Invite,
 };
 
 /*  CONFIGS  */
@@ -37,10 +41,8 @@ export default class sendmebird extends Component {
     
     AppState.addEventListener('change', function(currentAppState){
       if (currentAppState === 'active') {
-        console.log('foreground');
         _sendbird.setForegroundState();
       } else if (currentAppState === 'background') {
-        console.log('background');
         _sendbird.setBackgroundState();
       }
     });
@@ -68,9 +70,6 @@ export default class sendmebird extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 20,

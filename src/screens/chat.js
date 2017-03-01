@@ -257,6 +257,9 @@ export default class Chat extends Component {
         'Open Channel',
         null,
         [
+          {text: 'Invite users to this channel', onPress: () => {
+            this.props.navigator.push({name: 'inviteUser', channel: this.state.channel});
+          }},
           {text: 'Close'}
         ]
       )
